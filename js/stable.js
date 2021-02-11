@@ -169,6 +169,7 @@ roamsr.loadCards = async (limits, dateBasis = new Date()) => {
       uid: result[0].uid,
       string: result[0].string,
       history: result[0]._refs ? result[0]._refs
+        .filter(ref => !!ref.page)
         .filter(ref => (ref._children && ref._children[0].refs) ? ref._children[0].refs.map(ref2 => ref2.title).includes("roam/sr/review") : false)
         .map(review => {
           return {
